@@ -5,7 +5,7 @@
 ** Asignatura: Diseño y Analisis de Algoritmos
 ** Curso: 3º
 ** Practica 2: Máquina RAM
-** Autor: Marco Pérez Padilla
+** Autor: Marco Pérez Padilla, Keran Miranda González
 ** Correo: alu0101469348@ull.edu.es
 ** Fecha: 21/02/2026
 
@@ -27,6 +27,7 @@ class Instruction {
  public:
   virtual ~Instruction() = default;
   virtual void execute(ExecutionContext& ctx) = 0;
+  virtual int getLine() const = 0;
 };
 
 #endif

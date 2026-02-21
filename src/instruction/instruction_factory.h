@@ -5,7 +5,7 @@
 ** Asignatura: Diseño y Analisis de Algoritmos
 ** Curso: 3º
 ** Practica 2: Máquina RAM
-** Autor: Marco Pérez Padilla
+** Autor: Marco Pérez Padilla, Keran Miranda González
 ** Correo: alu0101469348@ull.edu.es
 ** Fecha: 21/02/2026
 
@@ -28,8 +28,8 @@
 
 class InstructionFactory {
  public:
-  // Crea una instrucción a partir del opcode, el operando (puede ser nullptr) y una etiqueta (para saltos).
-  static std::unique_ptr<Instruction> create(const std::string& opcode, std::unique_ptr<Operand> operand, const std::string& label = ""); // InvalidInstruction
+  // Crea una instrucción a partir del opcode, el operando (puede ser nullptr), una etiqueta (para saltos) y el número de línea.
+  static std::unique_ptr<Instruction> create(const std::string& opcode, std::unique_ptr<Operand> operand, int line, const std::string& label = ""); // InvalidInstruction
 };
 
 #endif

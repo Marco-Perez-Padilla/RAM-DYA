@@ -9,7 +9,7 @@
 ** Correo: alu0101469348@ull.edu.es
 ** Fecha: 21/02/2026
 
-** Archivo abstract_instruction.h: Archivo de la clase que representa una instrucción aritmética
+** Archivo instruction_with_operand.h: Clase intermedia para trabajar con instrucciones que tienen un operando
 **
 ** Referencias:
 **      Enlaces de interes
@@ -18,18 +18,19 @@
 **      21/02/2026 - Creacion (primera version) del codigo
 **/
 
-#ifndef ARITHMETIC_INSTRUCTION_H
-#define ARITHMETIC_INSTRUCTION_H
+#ifndef INSTRUCTION_WITH_OPERAND_H
+#define INSTRUCTION_WITH_OPERAND_H
 
-#include "../instruction_with_operand.h"
-#include "../../operand/operand.h"
+#include "abstract_instruction.h"
+#include "../operand/operand.h"
 #include <memory>
 
-class ArithmeticInstruction : public InstructionWithOperand {
+class InstructionWithOperand : public AbstractInstruction {
  public:
-  ArithmeticInstruction(int line, std::unique_ptr<Operand> operand)
-        : InstructionWithOperand(line, std::move(operand)) {}
-  virtual ~ArithmeticInstruction() = default;
+  InstructionWithOperand(int line, std::unique_ptr<Operand> operand)
+      : AbstractInstruction(line), operand_(std::move(operand)) {}
+  virtual ~InstructionWithOperand() = default;
+
  protected:
   std::unique_ptr<Operand> operand_;
 };

@@ -5,7 +5,7 @@
 ** Asignatura: Diseño y Análisis de Algoritmos
 ** Curso: 3º
 ** Práctica 1: Complejidad Computacional
-** Autor: Marco Pérez Padilla
+** Autor: Marco Pérez Padilla, Keran Miranda González
 ** Correo: alu0101469348@ull.edu.es
 ** Fecha: 01/02/2026
 
