@@ -39,6 +39,7 @@ class Operand {
   virtual int getValue(ExecutionContext& ctx) const = 0;
   virtual void setValue(ExecutionContext& ctx, int value) = 0; // exception
   virtual OperandType getType() const = 0;
+  virtual bool isWritable() const = 0;
 };
 
 #endif
