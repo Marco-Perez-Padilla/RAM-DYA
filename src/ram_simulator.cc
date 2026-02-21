@@ -29,3 +29,25 @@ int main(int argc, char* argv[]) {
   //menu.Run();
   return 0;
 }
+
+
+/**
+ * YA IMPLEMENTADO:
+ * - Todos los .h, lo siguiente es referente a los .cc
+ * - tape (todos los archivos), cintas salida y entrada
+ * - Parser: SOLO label table
+ * - operand: Tdodos los archivos, tipos de operandos (ctes, directos, indirectos y vector para apto+)
+ * - memory: Todos los archivos, memoria de la máquina RAM e implementación de los registros (y tmb la memoria de registros)
+ * - file manager: Todos los archivos, lectura de archivos de entrada y escritura de archivos de salida
+ * - exceptions: Implementación de las excepciones
+ * - core: Execution context y program counter hechos
+ */
+
+ /**
+  * TODO:
+  * - Parser: Implementar el parser excepto label table
+  * - instruction: Implementar todos los .cc, tanto arithmetic, como control e io (asi como tmb el factory)
+  * - help: Actualizar mensajes de ayuda y ajustar a la ejecución del programa como se pide (último paso de todos)
+  * - core: Instruction executor (ejecución de instrucciones) y ram machine (núcleo del programa)
+  * - addressing: Implementacion de los tres tipos de addressing 
+  */
