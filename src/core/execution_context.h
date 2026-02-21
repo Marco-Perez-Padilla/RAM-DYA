@@ -23,7 +23,8 @@
 
 #include <memory>
 #include "../memory/abstract_memory.h"
-#include "../tape/tape.h"
+#include "../tape/input_tape.h"
+#include "../tape/output_tape.h"
 #include "../parser/label_table.h"
 
 class ExecutionContext {
