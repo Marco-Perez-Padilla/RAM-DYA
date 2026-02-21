@@ -29,7 +29,8 @@
 
 class ExecutionContext {
  public:
-  ExecutionContext(AbstractMemory& mem, InputTape& input, OutputTape& output, LabelTable& labels);
+  ExecutionContext(AbstractMemory& mem, InputTape& input, OutputTape& output, LabelTable& labels)
+    : memory_(mem), input_(input), output_(output), labels_(labels), acc_(0), pc_(0), steps_(0) {}
     
   int& accumulator() { return acc_; }
   int accumulator() const { return acc_; }
