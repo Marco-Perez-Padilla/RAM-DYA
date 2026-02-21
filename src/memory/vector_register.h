@@ -1,3 +1,23 @@
+/**
+** Universidad de La Laguna
+** Escuela Superior de Ingenieria y Tecnologia
+** Grado en Ingenieria Informatica
+** Asignatura: Diseño y Analisis de Algoritmos
+** Curso: 3º
+** Practica 2: Máquina RAM
+** Autor: Marco Pérez Padilla
+** Correo: alu0101469348@ull.edu.es
+** Fecha: 21/02/2026
+
+** Archivo vector_register.h: Archivo de la clase para registros vectoriales
+**
+** Referencias:
+**      Enlaces de interes
+
+** Historial de revisiones:
+**      21/02/2026 - Creacion (primera version) del codigo
+**/
+
 #ifndef VECTOR_REGISTER_H
 #define VECTOR_REGISTER_H
 
