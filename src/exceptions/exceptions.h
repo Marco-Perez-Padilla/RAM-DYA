@@ -4,10 +4,10 @@
 ** Grado en Ingenieria Informatica
 ** Asignatura: Diseño y Analisis de Algoritmos
 ** Curso: 3º
-** Practica 1: Complejidad Computacional
+** Practica 2: Máquina RAM
 ** Autor: Marco Pérez Padilla
 ** Correo: alu0101469348@ull.edu.es
-** Fecha: 31/01/2026
+** Fecha: 21/02/2026
 
 ** Archivo exceptions.h: Archivo de excepciones
 **
@@ -15,7 +15,7 @@
 **      Enlaces de interes
 
 ** Historial de revisiones:
-**      31/01/2026 - Creacion (primera version) del codigo
+**      21/02/2026 - Creacion (primera version) del codigo
 **/
 
 #ifndef EXCEPTIONS_H
@@ -39,46 +39,51 @@ class Exceptions : public std::exception {
 };
 
 /**
- * @brief Class MatrixNegativeSizeException. Throws an exception if any index is negative
+ * @brief Class InvalidInstructionException. Throws an exception if an instruction is invalid
  */
-class MatrixNegativeSizeException : public Exceptions {
+class InvalidInstructionException : public Exceptions {
  public:
-  MatrixNegativeSizeException() : Exceptions("Error: No dimension can be negative, both must be positive natural numbers.") {}
+  explicit InvalidInstructionException(const std::string& msg) : Exceptions(msg) {}
 };
 
 /**
- * @brief Class MatrixNegativeSizeException. Throws an exception if both indexes are 0
+ * @brief Class InvalidOperandException. Throws an exception if an operand is invalid
  */
-class MatrixBothZeroException : public Exceptions {
+class InvalidOperandException : public Exceptions {
  public:
-  MatrixBothZeroException() : Exceptions("Error: Both dimensions can not be 0, at least one of them mist be a positive natural number.") {}
+  explicit InvalidOperandException(const std::string& msg) : Exceptions(msg) {}
 };
 
 /**
- * @brief Class MatrixIndexOutOfRangeException. Throws an exception if any index is out of range
+ * @brief Class OutOfTapeException. Throws an exception if the tape is out of bounds
  */
-class MatrixIndexOutOfRangeException : public Exceptions {
+class OutOfTapeException : public Exceptions {
  public:
-  MatrixIndexOutOfRangeException(int i, int j, int rows, int columns)
-    : Exceptions(
-      "Error: index out of range [" + std::to_string(i) + 
-      "][" + std::to_string(j) + "]. " +
-      "Matrix is " + std::to_string(rows) + "x" + 
-      std::to_string(columns) + "."
-    ) {}
+  explicit OutOfTapeException(const std::string& msg) : Exceptions(msg) {}
 };
 
 /**
- * @brief Class MatrixMultiplicationException. Throws an exception if two matrixes can not be multiplied
+ * @brief Class HaltException. Throws an exception if the halt instruction is encountered
  */
-class MatrixMultiplicationException : public Exceptions {
+class HaltException : public Exceptions {
  public:
-  MatrixMultiplicationException(int columns, int rows)
-    : Exceptions(
-      "Error: It is not possible to multiply the matrixes. " +
-      std::string("A Matrix columns (") + std::to_string(columns) + 
-      ") != B Matrix rows (" + std::to_string(rows) + ")."
-    ) {}
+  HaltException() : Exceptions("HALT instruction encountered") {}
+};
+
+/**
+ * @brief Class WriteOnInputTapeException. Throws an exception if a write operation is attempted on the input tape
+ */
+class WriteOnInputTapeException : public Exceptions {
+ public:
+  WriteOnInputTapeException() : Exceptions("Invalid operation: cannot write on input tape") {}
+};
+
+/**
+ * @brief Class ReadOnOutputTapeException. Throws an exception if a read/hasNext operation is attempted on the output tape
+ */
+class ReadOnOutputTapeException : public Exceptions {
+ public:
+  ReadOnOutputTapeException() : Exceptions("Invalid operation: cannot read from output tape") {}
 };
 
 #endif
