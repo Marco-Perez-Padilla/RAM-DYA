@@ -6,7 +6,7 @@
 ** Curso: 3º
 ** Practica 2: Máquina RAM
 ** Autor: Marco Pérez Padilla, Keran Miranda González
-** Correo: alu0101469348@ull.edu.es
+** Correo: alu0101469348@ull.edu.es, alu0101485904@ull.edu.es
 ** Fecha: 21/02/2026
 
 ** Archivo abstract_memory.h: Archivo de la clase para l interfaz que representa la memoria
