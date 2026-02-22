@@ -26,6 +26,7 @@
 class DirectOperand : public Operand {
  public:
   explicit DirectOperand(int registerIndex);  
+  int getRegisterIndex() const { return registerIndex_; }
   int getValue(ExecutionContext& ctx) const override;
   void setValue(ExecutionContext& ctx, int value) override;
   OperandType getType() const override;

@@ -25,7 +25,7 @@
 
 class ScalarRegister : public Register {
  public:
-  ScalarRegister(int value = 0);
+  ScalarRegister(int value = 0) : value_(value) {};
   int getValue() const override;
   void setValue(int value) override;
   int getValueAt(int index) const override;

@@ -27,7 +27,11 @@
  * @param registerIndex the index of the register that this direct operand refers to
  * @throws InvalidR0OperandException if the register index is 0, since R0 cannot be used as a direct operand
  */
-DirectOperand::DirectOperand(int registerIndex) : registerIndex_(registerIndex) {}
+DirectOperand::DirectOperand(int registerIndex) : registerIndex_(registerIndex) {
+  if (registerIndex == 0) {
+    throw InvalidR0OperandException("DirectOperand");
+  }
+}
 
 
 /**

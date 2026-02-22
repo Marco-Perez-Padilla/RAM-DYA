@@ -26,6 +26,7 @@
 
 class InputTape : public Tape {
  public:
+  InputTape() : data_(), pos_(0) {}
   explicit InputTape(const std::vector<int>& data);
   bool hasNext() const override;
   int read() override;
