@@ -15,7 +15,7 @@
 **      Enlaces de interes
 
 ** Historial de revisiones:
-**      21/02/2026 - Creacion (primera version) del codigo
+**      22/02/2026 - Creacion (primera version) del codigo
 **/
 
 #include "read_instruction.h"
