@@ -19,14 +19,32 @@
 **/
 
 #include <string>
-// #include "menu/menu.h"
+#include <iostream>
+#include "core/ram_machine.h"
 #include "help/help_functions.h"
 
 int main(int argc, char* argv[]) {
   int result = ValidateArguments(argc, argv);
   if (result >= 0) return result;
-  //Menu menu;
-  //menu.Run();
+  std::string progFile = argv[1];
+  std::string inputFile = argv[2];
+  std::string outputFile = argv[3];
+
+  RAMMachine machine;
+
+  try {
+    machine.loadProgram(progFile);
+    machine.loadInputTape(inputFile);
+    machine.setOutputFile(outputFile);
+    machine.run();
+  } catch (const Exceptions& error) {
+    std::cerr << "Error: " << error.what() << std::endl;
+    return 1;
+  } catch (const std::exception& error) {
+    std::cerr << "Unexpected error: " << error.what() << std::endl;
+    return 1;
+  }
+  
   return 0;
 }
 
@@ -44,12 +62,15 @@ int main(int argc, char* argv[]) {
  * - Parser: Implementar el parser completo (Adicion de funciones en help, funciones de ayuda a parser)
  * - instruction: Implementados, incluido el executor de instrucciones
  * - addressing: Implementacion de los tres tipos de addressing YA IMPLEMENTADO INTERNAMENTE EN OPERANDOS, no es necesario separarlo
+ * - core: ram machine
+ * - help: Actualizar mensajes de ayuda y ajustar a la ejecución del programa como se pide (último paso de todos): Hecho
+ * - help: Considerar si dejar las ayudas de parser en help_functions o crear un nuevo archivo más específico. Son funciones de toup, parse, tokenize, trim
+ *      Por el momento he considerado mejor dejarlo en help_functions
  */
 
  /**
   * TODO:
-  * - help: Considerar si dejar las ayudas de parser en help_functions o crear un nuevo archivo más específico. Son funciones de toup, parse, tokenize, trim
-  * - help: Actualizar mensajes de ayuda y ajustar a la ejecución del programa como se pide (último paso de todos)
-  * - core: ram machine (núcleo del programa)
+  * 
+  * 
   * 
   */

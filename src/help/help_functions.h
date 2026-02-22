@@ -23,6 +23,8 @@
 
 void Help ();
 void Usage();
+bool ValidateRAMFile (const std::string& name);
+bool ValidateInputOutputFile (const std::string& name);
 int ValidateArguments(int argc, char* argv[]);
 std::string trim(const std::string& string);
 bool isInteger(const std::string& string);
