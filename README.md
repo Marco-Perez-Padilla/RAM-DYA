@@ -113,7 +113,7 @@ classDiagram
     InstructionWithOperand <|-- IOInstruction
     IOInstruction <|-- ReadInstruction
     IOInstruction <|-- WriteInstruction
-    Instruction <|-- HaltInstruction
+    AbstractInstruction <|-- HaltInstruction
 
     class FileManager
 
