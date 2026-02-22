@@ -22,32 +22,40 @@
 #include <sstream>
 #include <algorithm>
 #include <cctype>
+#include <regex>
 #include "help_functions.h"
 
 /**
  * @brief Prints Help to the user
  */
 void Help() {
-    std::cout << "MATRIXES MULTIPLIER" << std::endl;
-    std::cout << "Generates matrices and multiplies them using different algorithms.\n" << std::endl;
+  std::cout << "RAM MACHINE SIMULATOR" << std::endl;
+  std::cout << "Simulates the execution of a RAM program with input and output tapes.\n" << std::endl;
 
-    std::cout << "Options:" << std::endl;
-    std::cout << "  --help        Show this help message" << std::endl;
-    std::cout << "  Run the program without arguments to start the interactive menu." << std::endl;
-    std::cout << std::endl;
+  std::cout << "Usage:" << std::endl;
+  std::cout << "  ./ram_simulator <program.ram> <input.tape> <output.tape>" << std::endl;
+  std::cout << std::endl;
 
-    std::cout << "Interactive Menu:" << std::endl;
-    std::cout << "  1. Square matrices  -> Choose size n x n and multiplication algorithm." << std::endl;
-    std::cout << "  2. Custom matrices  -> Specify rows and columns for matrices A and B, then choose algorithm." << std::endl;
-    std::cout << "  3. Quit             -> Exit the program." << std::endl;
-    std::cout << std::endl;
+  std::cout << "Arguments:" << std::endl;
+  std::cout << "  <program.ram>   : File containing the RAM program (instructions and labels)." << std::endl;
+  std::cout << "  <input.tape>    : File with input data (one integer per line)." << std::endl;
+  std::cout << "  <output.tape>   : File where the output tape will be written after execution." << std::endl;
+  std::cout << std::endl;
 
-    std::cout << "Algorithm Options:" << std::endl;
-    std::cout << "  1. Multiplication by Rows" << std::endl;
-    std::cout << "  2. Multiplication by Columns" << std::endl;
-    std::cout << "  3. Run both algorithms" << std::endl;
-    std::cout << "  0. Back to main menu" << std::endl;
-    std::cout << std::endl;
+  std::cout << "Program format:" << std::endl;
+  std::cout << "  - Instructions: LOAD, STORE, ADD, SUB, MUL, DIV, READ, WRITE, JUMP, JZERO, JGTZ, HALT." << std::endl;
+  std::cout << "  - Operands: =value (constant), register (direct), *register (indirect)." << std::endl;
+  std::cout << "  - Labels: alphanumeric string followed by ':' at the beginning of a line." << std::endl;
+  std::cout << "  - Comments: start with '#' (ignored)." << std::endl;
+  std::cout << std::endl;
+
+  std::cout << "Extended version (vector support):" << std::endl;
+  std::cout << "  - Vector access: Rbase[index], where index can be any operand type." << std::endl;
+  std::cout << "  - Example: LOAD R1[R2]  loads from R1 at position given by R2." << std::endl;
+  std::cout << std::endl;
+
+  std::cout << "Options:" << std::endl;
+  std::cout << "  --help        Show this help message and exit." << std::endl;
 }
 
 
@@ -55,8 +63,36 @@ void Help() {
  * @brief Prints how to use the program
  */
 void Usage() {
-    std::cout << "How to use: ./matrixes_multiplier [--help]" << std::endl;
-    std::cout << "Try './matrixes_multiplier --help' for more information." << std::endl;
+  std::cout << "Usage: ./ram_simulator <program.ram> <input.tape> <output.tape>" << std::endl;
+  std::cout << "Try './ram_simulator --help' for more information." << std::endl;
+}
+
+
+/**
+ * @brief Validates if a file has a valid extension (.ram for RAM files, .txt for input/output files)
+ * @param name The name of the file to validate
+ * @return true if the file has a valid extension, false otherwise
+ */
+bool ValidateRAMFile (const std::string& name) {
+  if (name.find('.') == std::string::npos) {
+    return false;  
+  }
+  std::regex pattern (R"((.*)\.(ram)$)");
+  return std::regex_match(name, pattern);
+}
+
+
+/**
+ * @brief Validates if a file has a valid extension (.ram for RAM files, .txt for input/output files)
+ * @param name The name of the file to validate
+ * @return true if the file has a valid extension, false otherwise
+ */
+bool ValidateInputOutputFile (const std::string& name) {
+  if (name.find('.') == std::string::npos) {
+    return false;  
+  }
+  std::regex pattern (R"((.*)\.(txt)$)");
+  return std::regex_match(name, pattern);
 }
 
 
@@ -66,20 +102,20 @@ void Usage() {
  * @param argv
  */
 int ValidateArguments(int argc, char* argv[]) {
-  if (argc == 1) return -1;
   if (argc == 2) {
     std::string arg1 = argv[1];
     if (arg1 == "--help" || arg1 == "-h") {
       Help();
       return 0;
-    } else {
-      Usage();
-      return 1;
-    }
-  } else {
-    Usage();
-    return 1;
-  }
+    } 
+  } else if (argc == 4) {
+    if (ValidateRAMFile(argv[1]) && ValidateInputOutputFile(argv[2]) && ValidateInputOutputFile(argv[3])) {
+      return -1;
+    } 
+  } 
+
+  Usage();
+  return 1;
 }
 
 
