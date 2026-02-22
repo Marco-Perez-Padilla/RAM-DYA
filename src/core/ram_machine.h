@@ -33,7 +33,7 @@
 
 class RAMMachine {
  public:
-  RAMMachine();
+  RAMMachine() : steps_(0) {}
   void loadProgram(const std::string& progFile);
   void loadInputTape(const std::string& inputFile);
   void setOutputFile(const std::string& outputFile);
