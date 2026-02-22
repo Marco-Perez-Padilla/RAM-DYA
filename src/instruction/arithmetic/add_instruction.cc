@@ -23,8 +23,8 @@
 
 
 /**
- * @brief Ejecuta la instrucción ADD, sumando el valor del operando al acumulador.
- * @param ctx El contexto de ejecución que contiene el estado de la máquina RAM.
+ * @brief Executes the ADD instruction, which adds the value of the specified operand to the accumulator.
+ * @param ctx The execution context containing the memory, input tape, output tape, label table, accumulator, program counter, and step count.
  */
 void AddInstruction::execute(ExecutionContext& ctx) {
   int valor = operand_->getValue(ctx);

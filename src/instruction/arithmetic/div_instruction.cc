@@ -24,9 +24,9 @@
 
 
 /**
- * @brief Ejecuta la instrucción DIV, dividiendo el acumulador por el valor del operando.
- * @param ctx El contexto de ejecución que contiene el estado de la máquina RAM.
- * @throws DivisionByZeroException Si el valor del operando es cero.
+ * @brief Executes the DIV instruction, which divides the value in the accumulator by the value of the operand and stores the result back in the accumulator.
+ * @param ctx The execution context containing the memory, input tape, output tape, label table, accumulator, program counter, and step count.
+ * @throws DivisionByZeroException If the operand value is zero, as division by zero is not allowed.
  */
 void DivInstruction::execute(ExecutionContext& ctx) {
   int valor = operand_->getValue(ctx);

@@ -23,8 +23,8 @@
 
 
 /**
- * @brief Ejecuta la instrucción STORE, almacenando el valor del acumulador en el operando.
- * @param ctx El contexto de ejecución que contiene el estado de la máquina RAM.
+ * @brief Executes the STORE instruction, which stores the value of the accumulator into the specified operand.
+ * @param ctx The execution context containing the memory, input tape, output tape, label table, accumulator, program counter, and step count.
  */
 void StoreInstruction::execute(ExecutionContext& ctx) {
   operand_->setValue(ctx, ctx.accumulator());

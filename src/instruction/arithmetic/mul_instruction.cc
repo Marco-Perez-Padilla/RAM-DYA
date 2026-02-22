@@ -23,8 +23,8 @@
 
 
 /**
- * @brief Ejecuta la instrucción MUL, multiplicando el valor del operando por el acumulador.
- * @param ctx El contexto de ejecución que contiene el estado de la máquina RAM.
+ * @brief Executes the MUL instruction, which multiplies the value of the accumulator by the value of the specified operand and stores the result back in the accumulator.
+ * @param ctx The execution context containing the memory, input tape, output tape, label table, accumulator, program counter, and step count.
  */
 void MulInstruction::execute(ExecutionContext& ctx) {
   int valor = operand_->getValue(ctx);

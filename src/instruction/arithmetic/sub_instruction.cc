@@ -23,8 +23,8 @@
 
 
 /**
- * @brief Ejecuta la instrucción SUB, restando el valor del operando al acumulador.
- * @param ctx El contexto de ejecución que contiene el estado de la máquina RAM.
+ * @brief Executes the SUB instruction, which subtracts the value of the operand from the accumulator and stores the result back in the accumulator.
+ * @param ctx The execution context containing the memory, input tape, output tape, label table, accumulator, program counter, and step count.
  */
 void SubInstruction::execute(ExecutionContext& ctx) {
   int valor = operand_->getValue(ctx);

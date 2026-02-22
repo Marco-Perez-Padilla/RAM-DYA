@@ -23,8 +23,8 @@
 
 
 /**
- * @brief Ejecuta la instrucción LOAD, cargando el valor del operando en el acumulador.
- * @param ctx El contexto de ejecución que contiene el estado de la máquina RAM.
+ * @brief Executes the LOAD instruction, which loads the value from the specified operand into the accumulator.
+ * @param ctx The execution context containing the memory, input tape, output tape, label table, accumulator, program counter, and step count.
  */
 void LoadInstruction::execute(ExecutionContext& ctx) {
   int valor = operand_->getValue(ctx);
