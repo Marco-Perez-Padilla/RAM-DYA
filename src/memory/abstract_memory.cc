@@ -53,6 +53,9 @@ void AbstractMemory::write(int regv, int value) {
  * @throws InvalidOperandException if the register is not a vector register.
  */
 int AbstractMemory::read(int regv, int index) {
+  if (!hasRegister(regv)) {
+    createRegister(regv, true);
+  }
   Register& reg = getRegister(regv);
   if (!reg.isVector()) {
     throw InvalidOperandException("Intento de acceso indexado a un registro no vectorial");
@@ -69,6 +72,9 @@ int AbstractMemory::read(int regv, int index) {
  * @throws InvalidOperandException if the register is not a vector register.
  */
 void AbstractMemory::write(int regv, int index, int value) {
+  if (!hasRegister(regv)) {
+    createRegister(regv, true);
+  }
   Register& reg = getRegister(regv);
   if (!reg.isVector()) {
     throw InvalidOperandException("Intento de acceso indexado a un registro no vectorial");

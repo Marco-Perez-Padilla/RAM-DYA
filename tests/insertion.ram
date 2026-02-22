@@ -1,0 +1,64 @@
+              READ    5          # R5 = n
+              LOAD    =0
+              STORE   2          # j = 0 para lectura
+lectura:      LOAD    2
+              SUB     5
+              JZERO   fin_lectura
+              READ    1[2]       # A[j] = valor leído
+              LOAD    2
+              ADD     =1
+              STORE   2
+              JUMP    lectura
+fin_lectura:  LOAD    =1
+              STORE   2          # j = 1 
+bucle_j:      LOAD    2
+              SUB     5
+              JZERO   escribe        # if j == n, terminar
+              LOAD    1[2]       # key = A[j]
+              STORE   3
+              LOAD    2
+              SUB     =1
+              STORE   4          # i = j-1
+bucle_i:      LOAD    4
+              ADD     =1
+              JZERO   colocar    # si i+1 == 0 (i == -1), salir y colocar
+              LOAD    1[4]
+              SUB     3
+              JGTZ    continua   # if A[i] > key, continuar
+              JUMP    colocar
+continua:     LOAD    4
+              ADD     =1
+              STORE   6          # tmp = i+1
+              LOAD    1[4]
+              STORE   1[6]
+              LOAD    4
+              SUB     =1
+              STORE   4
+              JUMP    bucle_i
+colocar:      LOAD    4
+              ADD     =1
+              STORE   6
+              LOAD    3
+              STORE   1[6]
+              LOAD    2
+              ADD     =1
+              STORE   2
+              JUMP    bucle_j
+escribe:      LOAD    =0        
+              STORE   2
+escribe_loop: LOAD    2
+              SUB     5
+              JZERO   fin
+              WRITE   1[2]
+              LOAD    2
+              ADD     =1
+              STORE   2
+              JUMP    escribe_loop
+fin:          HALT
+
+# n20: Program finished successfully. Steps: 2221
+# n50: Program finished successfully. Steps: 11682
+# n100: Program finished successfully. Steps: 41976
+# n1000: Program finished successfully. Steps: 3725023
+# n5000: Program finished successfully. Steps: 94557600
+# n1000: Program finished successfully. Steps: 379745930
