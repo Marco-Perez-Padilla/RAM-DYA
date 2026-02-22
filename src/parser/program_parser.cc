@@ -34,7 +34,6 @@
  * @throws EmptyFileException if the file is empty or has no valid content
  */
 std::pair<std::vector<std::unique_ptr<Instruction>>, LabelTable> ProgramParser::parse(const std::string& filename) {
-
   std::vector<std::string> lines = FileManager::readProgramFile(filename);
   if (lines.empty()) {
     throw EmptyFileException(filename);
@@ -44,11 +43,13 @@ std::pair<std::vector<std::unique_ptr<Instruction>>, LabelTable> ProgramParser::
 
   std::vector<ParsedInstruction> parsed_instructions;
   std::vector<int> line_numbers;
+  // std::vector<std::string> errors;
 
   // First pass: parse lines and build label table
   for (size_t i = 0; i < lines.size(); ++i) {
     int line_num = i + 1;
 
+    // try { // Version para incluir todos los errores
     ParsedInstruction parsed = InstructionParser::parse(lines[i], line_num);
 
     if (!parsed.label.empty()) {
@@ -59,6 +60,9 @@ std::pair<std::vector<std::unique_ptr<Instruction>>, LabelTable> ProgramParser::
       parsed_instructions.push_back(std::move(parsed));
       line_numbers.push_back(line_num);
     }
+    // } catch (const Exceptions& error) {
+    //   errors.push_back(error.what());
+    // } 
   }
 
   // Second pass: create instruction objects
@@ -68,10 +72,22 @@ std::pair<std::vector<std::unique_ptr<Instruction>>, LabelTable> ProgramParser::
     auto& parsed = parsed_instructions[i];
     int line_num = line_numbers[i];
 
+    // try { // Version para incluir todos los errores
     auto instr = InstructionFactory::create(parsed.opcode, std::move(parsed.operand), line_num, parsed.jump_label);
 
     program.push_back(std::move(instr));
+    // } catch (const Exceptions& error) {
+    //   errors.push_back(error.what());
+    // }
   }
+
+  //if (!errors.empty()) {
+  //  std::string full_msg = "Program has syntax errors:\n";
+  //  for (const auto& err : errors) {
+  //    full_msg += err + "\n";
+  //  }
+  //  throw Exceptions(full_msg);
+  //}
 
   return {std::move(program), std::move(label_table)};
 }
