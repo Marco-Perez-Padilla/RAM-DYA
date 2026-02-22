@@ -123,9 +123,10 @@ int ValidateArguments(int argc, char* argv[]) {
  * @brief Elimina espacios en blanco al inicio y final de una cadena.
  */
 std::string trim(const std::string& string) {
-  size_t start = string.find_first_not_of(" \t");
+  const std::string whitespace = " \t\n\r\f\v";
+  size_t start = string.find_first_not_of(whitespace);
   if (start == std::string::npos) return "";
-  size_t end = string.find_last_not_of(" \t");
+  size_t end = string.find_last_not_of(whitespace);
   return string.substr(start, end - start + 1);
 }
 
