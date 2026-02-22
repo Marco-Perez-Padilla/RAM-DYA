@@ -19,6 +19,9 @@
 **/
 
 #include <iostream>
+#include <sstream>
+#include <algorithm>
+#include <cctype>
 #include "help_functions.h"
 
 /**
@@ -77,4 +80,68 @@ int ValidateArguments(int argc, char* argv[]) {
     Usage();
     return 1;
   }
+}
+
+
+/**
+ * @brief Elimina espacios en blanco al inicio y final de una cadena.
+ */
+std::string trim(const std::string& string) {
+  size_t start = string.find_first_not_of(" \t");
+  if (start == std::string::npos) return "";
+  size_t end = string.find_last_not_of(" \t");
+  return string.substr(start, end - start + 1);
+}
+
+/**
+ * @brief Checks if a string represents a valid integer 
+ * @param string The string to check
+ * @return true if the string is a valid integer, false otherwise
+ */
+bool isInteger(const std::string& string) {
+  if (string.empty()) return false;
+
+  size_t i = 0;
+  if (string[0] == '-' || string[0] == '+') {
+    if (string.length() == 1) return false;
+    i = 1;
+  }
+
+  for (; i < string.length(); ++i) {
+    if (!std::isdigit(string[i])) return false;
+  }
+
+  return true;
+}
+
+
+/**
+ * @brief Divide una línea en tokens separados por espacios.
+ */
+std::vector<std::string> tokenize(const std::string& line) {
+  std::vector<std::string> tokens;
+  std::istringstream iss(line);
+  std::string token;
+  while (iss >> token) {
+    tokens.push_back(token);
+  }
+  return tokens;
+}
+
+/**
+ * @brief Convierte un string a mayúsculas.
+ */
+std::string toUpper(const std::string& string) {
+  std::string result = string;
+  std::transform(result.begin(), result.end(), result.begin(),
+                [](unsigned char c){ return std::toupper(c); });
+  return result;
+}
+
+/**
+ * @brief Comprueba si un opcode es de salto.
+ */
+bool isJumpOpcode(const std::string& op) {
+  std::string uop = toUpper(op);
+  return uop == "JUMP" || uop == "JZERO" || uop == "JGTZ";
 }

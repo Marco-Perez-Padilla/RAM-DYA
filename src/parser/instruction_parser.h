@@ -30,13 +30,14 @@ struct ParsedInstruction {
   std::string label;
   std::string opcode;
   std::unique_ptr<Operand> operand;  
-  int lineNumber;
+  std::string jump_label;
+  int line_number;
 };
 
 class InstructionParser {
  public:
   // Parsea una línea de programa sin comentarios y devuelve una estructura ParsedInstruction.
-  static ParsedInstruction parse(const std::string& line, int lineNumber); // InvalidInstruction
+  static ParsedInstruction parse(const std::string& line, int line_umber); // InvalidInstruction
 };
 
 #endif
