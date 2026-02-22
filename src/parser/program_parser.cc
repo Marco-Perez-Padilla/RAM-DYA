@@ -23,6 +23,7 @@
 #include "../file_manager/file_manager.h"
 #include "../instruction/instruction_factory.h"
 #include "../exceptions/exceptions.h"
+#include "../help/help_functions.h"
 #include <vector>
 #include <memory>
 
@@ -49,8 +50,11 @@ std::pair<std::vector<std::unique_ptr<Instruction>>, LabelTable> ProgramParser::
   for (size_t i = 0; i < lines.size(); ++i) {
     int line_num = i + 1;
 
+    std::string lineTrimmed = trim(lines[i]);
+    if (lineTrimmed.empty() || lineTrimmed[0] == '#') continue;
+
     // try { // Version para incluir todos los errores
-    ParsedInstruction parsed = InstructionParser::parse(lines[i], line_num);
+    ParsedInstruction parsed = InstructionParser::parse(lineTrimmed, line_num);
 
     if (!parsed.label.empty()) {
       label_table.addLabel(parsed.label, parsed_instructions.size());

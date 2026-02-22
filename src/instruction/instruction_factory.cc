@@ -87,7 +87,7 @@ std::unique_ptr<Instruction> InstructionFactory::create( const std::string& opco
   }
 
   // Store or IO
-  if (op == "STORE" || op == "READ" || op == "WRITE") {
+  if (op == "STORE" || op == "READ") {
     if (operand->getType() == OperandType::CONSTANT) {
       throw IncompatibleOperandException(opcode, "constant");
     }
