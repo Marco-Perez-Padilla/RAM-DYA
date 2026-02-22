@@ -18,6 +18,14 @@
 **      01/02/2026 - Creación (primera versión) del código
 **/
 
+#include <string>
+#include <vector>
+
 void Help ();
 void Usage();
 int ValidateArguments(int argc, char* argv[]);
+std::string trim(const std::string& string);
+bool isInteger(const std::string& string);
+std::vector<std::string> tokenize(const std::string& line);
+std::string toUpper(const std::string& string);
+bool isJumpOpcode(const std::string& op);
