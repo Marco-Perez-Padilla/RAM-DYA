@@ -30,8 +30,6 @@ class ArithmeticInstruction : public InstructionWithOperand {
   ArithmeticInstruction(int line, std::unique_ptr<Operand> operand)
         : InstructionWithOperand(line, std::move(operand)) {}
   virtual ~ArithmeticInstruction() = default;
- protected:
-  std::unique_ptr<Operand> operand_;
 };
 
 #endif
