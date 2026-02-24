@@ -28,6 +28,7 @@
 #include "arithmetic/div_instruction.h"
 #include "arithmetic/load_instruction.h"
 #include "arithmetic/store_instruction.h"
+#include "arithmetic/exp_instruction.h"
 #include "io/read_instruction.h"
 #include "io/write_instruction.h"
 #include "control/halt_instruction.h"
@@ -107,6 +108,7 @@ std::unique_ptr<Instruction> InstructionFactory::create( const std::string& opco
   if (op == "SUB") return std::make_unique<SubInstruction>(line, std::move(operand));
   if (op == "MUL") return std::make_unique<MulInstruction>(line, std::move(operand));
   if (op == "DIV") return std::make_unique<DivInstruction>(line, std::move(operand));
+  if (op == "EXP") return std::make_unique<ExpInstruction>(line, std::move(operand));
   if (op == "READ") return std::make_unique<ReadInstruction>(line, std::move(operand));
   if (op == "WRITE") return std::make_unique<WriteInstruction>(line, std::move(operand));
 
